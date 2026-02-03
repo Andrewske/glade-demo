@@ -2,14 +2,14 @@
 
 import {
 	Calendar,
-	DollarSign,
-	FileText,
+	CircleDollarSign,
+	TextSearch,
 	Headphones,
-	HelpCircle,
+	Workflow,
 	Home,
-	Mail,
+	Inbox,
 	MessageSquare,
-	RefreshCw,
+	Cookie,
 	Users,
 } from "lucide-react";
 import Image from "next/image";
@@ -18,14 +18,14 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 const navigation = [
 	{ name: "Home", href: "/", icon: Home },
-	{ name: "Inbox", href: "/inbox", icon: Mail },
+	{ name: "Inbox", href: "/inbox", icon: Inbox },
 	{ name: "Messaging", href: "/messages", icon: MessageSquare },
-	{ name: "Workflows", href: "/help", icon: HelpCircle },
-	{ name: "Content", href: "/sync", icon: RefreshCw },
+	{ name: "Workflows", href: "/help", icon: Workflow },
+	{ name: "Content", href: "/sync", icon: Cookie },
 	{ name: "Contacts", href: "/contacts", icon: Users },
-	{ name: "Transactions", href: "/billing", icon: DollarSign },
+	{ name: "Transactions", href: "/billing", icon: CircleDollarSign },
 	{ name: "Bookings", href: "/calendar", icon: Calendar },
-	{ name: "Workflow Reports", href: "/documents", icon: FileText },
+	{ name: "Workflow Reports", href: "/documents", icon: TextSearch },
 ];
 
 export const IconRail = () => {
