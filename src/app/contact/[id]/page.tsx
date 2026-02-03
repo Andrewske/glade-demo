@@ -7,9 +7,10 @@ import { SuggestedAction } from '@/components/overview/suggested-action'
 export default async function OverviewPage({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }) {
-  const contact = await getContactById(params.id)
+  const { id } = await params
+  const contact = await getContactById(id)
 
   if (!contact) {
     return (
