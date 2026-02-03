@@ -12,7 +12,7 @@ import type { ContactWithContext, ContactStatus } from '@/lib/types'
 // Zod schema for structured AI output
 const summarySchema = z.object({
   summary: z.string().describe('2-3 sentence summary of client status'),
-  escalation: z.string().optional().describe('Suggested escalation message for unresponsive clients'),
+  escalation: z.string().nullable().describe('Suggested escalation message for unresponsive clients'),
 })
 
 export type SummaryResult = z.infer<typeof summarySchema>
