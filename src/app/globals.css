@@ -5,28 +5,29 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Glade Design System Colors - exposed to Tailwind utilities */
-  --color-background: #212121;
-  --color-card: #292929;
-  --color-muted: #333333;
-  --color-border: #333333;
-  --color-foreground: #f0f0f0;
-  --color-muted-foreground: #aaaaaa;
+  /* Glade Design System - Tailwind utility definitions */
+  /* Actual values come from :root / .dark CSS variables below */
+  --color-background: var(--background);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
 
   /* Glade Primary Blue (use as bg-[var(--color-primary)]) */
   --color-primary: #5A92FF;
 
-  /* Status colors */
+  /* Status colors (same in both themes) */
   --color-status-success: #588205;
   --color-status-warning: #f59e0b;
   --color-status-danger: #b20a53;
 
   /* Accent & Link */
-  --color-accent: #ec4899;
+  --color-accent: var(--accent);
   --color-link: #38bdf8;
 
   /* Ring/Focus */
-  --color-ring: #3b82f6;
+  --color-ring: var(--ring);
 
   /* Border radius utilities */
   --radius-sm: calc(0.625rem - 4px);
@@ -36,11 +37,36 @@
   --radius-2xl: calc(0.625rem + 8px);
 }
 
+/* Light mode (default) */
 :root {
-  /* Border radius */
   --radius: 0.625rem;
 
-  /* Shadcn semantic tokens (for UI components like badge.tsx, button.tsx) */
+  /* Core grays - Light mode */
+  --background: #ffffff;
+  --foreground: #010101;
+  --card: #f7f7f7;
+  --card-foreground: #010101;
+  --muted: #ebebeb;
+  --muted-foreground: #666666;
+  --border: #ebebeb;
+  --input: #ebebeb;
+
+  /* Primary/accent */
+  --primary: #ec4899;
+  --primary-foreground: #ffffff;
+  --accent: #ec4899;
+  --accent-foreground: #ffffff;
+
+  /* Destructive */
+  --destructive: #b20a53;
+
+  /* Ring/focus */
+  --ring: #3b82f6;
+}
+
+/* Dark mode */
+.dark {
+  /* Core grays - Dark mode */
   --background: #212121;
   --foreground: #f0f0f0;
   --card: #292929;
@@ -50,16 +76,16 @@
   --border: #333333;
   --input: #333333;
 
-  /* Shadcn primary/accent (pink for UI components) */
+  /* Primary/accent (same as light) */
   --primary: #ec4899;
   --primary-foreground: #ffffff;
   --accent: #ec4899;
   --accent-foreground: #ffffff;
 
-  /* Shadcn destructive */
+  /* Destructive */
   --destructive: #b20a53;
 
-  /* Shadcn ring/focus */
+  /* Ring/focus */
   --ring: #3b82f6;
 }
 
@@ -99,7 +125,7 @@
   .scrollbar-thin-grey {
     /* Standard properties (Firefox, Chrome 121+, Edge 121+) */
     scrollbar-width: thin;
-    scrollbar-color: var(--color-muted) var(--color-background);
+    scrollbar-color: var(--muted) var(--background);
   }
 
   /* Webkit browsers (Chrome, Safari, Edge) */
@@ -109,11 +135,11 @@
   }
 
   .scrollbar-thin-grey::-webkit-scrollbar-track {
-    background: var(--color-background);
+    background: var(--background);
   }
 
   .scrollbar-thin-grey::-webkit-scrollbar-thumb {
-    background: var(--color-muted);
+    background: var(--muted);
     border-radius: 4px;
   }
 

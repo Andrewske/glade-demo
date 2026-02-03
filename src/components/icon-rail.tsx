@@ -4,6 +4,7 @@ import {
 	Calendar,
 	DollarSign,
 	FileText,
+	Headphones,
 	HelpCircle,
 	Home,
 	Mail,
@@ -13,6 +14,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navigation = [
 	{ name: "Home", href: "/", icon: Home },
@@ -37,7 +39,7 @@ export const IconRail = () => {
 	};
 
 	return (
-		<div className="flex h-screen w-18 flex-col items-center border-r border-border bg-background py-4">
+		<div className="flex h-screen w-18 flex-col items-center border-r border-border bg-background py-2">
 			{/* Glade logo */}
 			<div className="mb-8 flex h-8 w-8 items-center justify-center">
 				<Image
@@ -73,6 +75,31 @@ export const IconRail = () => {
 					);
 				})}
 			</nav>
+
+			{/* Bottom section: theme toggle, help, account */}
+			<div className="mt-auto flex flex-col items-center gap-2 w-full px-2">
+				<ThemeToggle />
+
+				{/* Help/Support */}
+				<button
+					type="button"
+					className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+					aria-label="Help & Support"
+				>
+					<Headphones className="h-4 w-4" />
+				</button>
+
+				{/* Account avatar */}
+				<div className="w-full border border-border py-2 flex justify-center rounded">
+					<button
+						type="button"
+						className="flex h-5 w-5 items-center justify-center rounded-full bg-black text-[8px] font-medium text-foreground"
+						aria-label="Account"
+					>
+						KA
+					</button>
+				</div>
+			</div>
 		</div>
 	);
 };

@@ -20,10 +20,9 @@ This is a standalone demo replicating Glade's UI style, not an integration with 
 
 ## Commands
 
-```bash
-# Development
-bun dev              # Start dev server on localhost:3000
+**Note:** Do not run `bun dev` - the user manages the dev server manually.
 
+```bash
 # Build & Production
 bun run build        # Production build
 bun start            # Run production server

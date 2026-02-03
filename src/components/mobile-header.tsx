@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { MainNavigationSidebar } from "@/components/main-navigation-sidebar";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 export const MobileHeader = () => {
@@ -27,13 +28,15 @@ export const MobileHeader = () => {
 				</button>
 
 				<div className="flex flex-1 items-center justify-center gap-3">
-					<div className="flex h-6 w-6 items-center justify-center rounded-full bg-background text-xs font-medium text-foreground">
+					<div className="flex h-6 w-6 items-center justify-center rounded-full bg-muted text-xs font-medium text-foreground">
 						KA
 					</div>
 					<span className="text-xs font-medium text-foreground">
 						Kevin Andrews
 					</span>
 				</div>
+
+				<ThemeToggle />
 			</div>
 
 			{/* Navigation sheet - positioned below header */}

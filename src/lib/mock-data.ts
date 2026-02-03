@@ -337,6 +337,91 @@ export const contacts: ContactWithContext[] = [
 		followUpCount: 1,
 	},
 
+	// Lisa Martinez - Amber status: Client asked question, awaiting attorney response
+	{
+		id: "lisa-martinez",
+		name: "Lisa Martinez",
+		email: "lisa.martinez@email.com",
+		phone: "(555) 678-9012",
+		chapter: "7",
+		avatarColor: "#a855f7",
+		createdAt: daysAgo(25),
+		conversations: [
+			{
+				id: "conv-lisa-1",
+				contactId: "lisa-martinez",
+				type: "system",
+				content: "Case initiated - Chapter 7 bankruptcy filing",
+				timestamp: daysAgo(25),
+			},
+			{
+				id: "conv-lisa-2",
+				contactId: "lisa-martinez",
+				type: "attorney-message",
+				content:
+					"Hi Lisa, welcome! To start your Chapter 7 filing, I'll need your tax returns, pay stubs, and a list of your debts.",
+				timestamp: daysAgo(23),
+			},
+			{
+				id: "conv-lisa-3",
+				contactId: "lisa-martinez",
+				type: "client-response",
+				content: "Thanks! I'll get those together this week.",
+				timestamp: daysAgo(22),
+			},
+			{
+				id: "conv-lisa-4",
+				contactId: "lisa-martinez",
+				type: "client-response",
+				content: "Just uploaded my tax returns and pay stubs!",
+				timestamp: daysAgo(8),
+			},
+			{
+				id: "conv-lisa-5",
+				contactId: "lisa-martinez",
+				type: "ai-followup",
+				content:
+					"Great, got those! Just need the debt list when you have a chance.",
+				timestamp: daysAgo(4),
+			},
+			{
+				id: "conv-lisa-6",
+				contactId: "lisa-martinez",
+				type: "client-response",
+				content:
+					"Quick question - should I include my student loans on the debt list? I heard those can't be discharged in bankruptcy.",
+				timestamp: daysAgo(1),
+			},
+		],
+		pendingItems: {
+			documents: {
+				required: 4,
+				uploaded: 2,
+				items: [
+					{ name: "Tax Returns", status: "uploaded" },
+					{ name: "Pay Stubs", status: "uploaded" },
+					{ name: "Debt List", status: "missing" },
+					{ name: "Bank Statements", status: "missing" },
+				],
+			},
+			forms: {
+				complete: false,
+				name: "Means Test Calculation",
+			},
+			invoices: {
+				total: 1500,
+				paid: 750,
+				overdue: false,
+			},
+		},
+		notes: [
+			"Client has questions about student loan treatment",
+			"Responsive via email, prefers written communication",
+		],
+		lastClientResponse: daysAgo(1),
+		followUpCount: 1,
+	},
+
 	// Robert Wilson - Red status: Overdue invoice + missing docs
 	{
 		id: "robert-wilson",
@@ -446,6 +531,14 @@ export const MOCK_SUMMARIES: Record<string, MockSummary> = {
 	"david-chen": {
 		summary:
 			"David uploaded all required documents 2 days ago after a brief delay. Everything appears complete and ready for attorney review to proceed with his Chapter 7 filing.",
+		escalation:
+			"Hi David, thanks for getting all those documents uploaded! I'm reviewing everything now and will have feedback for you within 24 hours.",
+	},
+	"lisa-martinez": {
+		summary:
+			"Lisa has uploaded her tax returns and pay stubs, and is waiting on a response to her question about student loans. She still needs to provide her debt list and bank statements.",
+		escalation:
+			"Hi Lisa, great question about the student loans! While they typically can't be discharged, I still need them on your debt list for the filing. I'll explain the full picture when we review everything together.",
 	},
 	"sarah-johnson": {
 		summary:

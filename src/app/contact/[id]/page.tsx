@@ -34,9 +34,12 @@ export default async function OverviewPage({
 		},
 	];
 
-	if (contact.status === "needs-attention") {
+	if (
+		contact.status === "needs-attention" ||
+		contact.status === "waiting-for-you"
+	) {
 		cards.push({
-			component: <SuggestedAction contact={contact} />,
+			component: <SuggestedAction contact={contact} status={contact.status} />,
 			key: "suggested-action",
 		});
 	}

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import { ContactSidebar } from "@/components/contact-sidebar";
 import { IconRail } from "@/components/icon-rail";
 import { MobileHeader } from "@/components/mobile-header";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ThemedToastContainer } from "@/components/themed-toast-container";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -28,26 +29,28 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<div className="flex h-screen bg-background">
-					{/* Mobile header */}
-					<MobileHeader />
+				<ThemeProvider>
+					<div className="flex h-screen bg-background">
+						{/* Mobile header */}
+						<MobileHeader />
 
-					{/* Desktop: Always visible sidebars */}
-					<div className="hidden md:flex">
-						<IconRail />
-						<ContactSidebar />
-					</div>
+						{/* Desktop: Always visible sidebars */}
+						<div className="hidden md:flex">
+							<IconRail />
+							<ContactSidebar />
+						</div>
 
-					{/* Main content area */}
-					<div className="flex-1 min-w-0 overflow-hidden pt-10 md:pt-0">
-						{children}
+						{/* Main content area */}
+						<div className="flex-1 min-w-0 overflow-hidden pt-10 md:pt-0">
+							{children}
+						</div>
 					</div>
-				</div>
-				<ToastContainer position="bottom-right" theme="dark" autoClose={5000} />
+					<ThemedToastContainer />
+				</ThemeProvider>
 			</body>
 		</html>
 	);
