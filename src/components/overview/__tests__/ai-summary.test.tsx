@@ -54,16 +54,26 @@ describe('AISummary', () => {
   })
 
   test('displays error message on fetch failure', async () => {
-    // Mock fetch to reject
-    globalThis.fetch = mock(() => Promise.reject(new Error('Network error')))
+    // Suppress expected console.error
+    const consoleSpy = mock(() => {})
+    const originalError = console.error
+    console.error = consoleSpy
 
-    render(<AISummary contact={mockContact} />)
+    try {
+      globalThis.fetch = mock(() => Promise.reject(new Error('Network error')))
+      render(<AISummary contact={mockContact} />)
 
-    await waitFor(
-      () => {
-        expect(screen.getByText('Failed to load summary')).toBeInTheDocument()
-      },
-      { timeout: 2000 }
-    )
+      await waitFor(
+        () => {
+          expect(screen.getByText('Failed to load summary')).toBeInTheDocument()
+        },
+        { timeout: 2000 }
+      )
+
+      // Verify error was logged
+      expect(consoleSpy).toHaveBeenCalled()
+    } finally {
+      console.error = originalError
+    }
   })
 })
