@@ -8,11 +8,20 @@ interface PendingItemsProps {
 export function PendingItems({ items }: PendingItemsProps) {
   const { documents, forms, invoices } = items
 
+  const allComplete =
+    documents.uploaded === documents.required &&
+    forms.complete &&
+    invoices.paid === invoices.total &&
+    !invoices.overdue
+
   return (
     <div className="rounded-lg border border-white/10 bg-[#1a1a1a] p-6">
       <h3 className="mb-4 text-lg font-semibold text-white">Pending Items</h3>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {allComplete ? (
+        <p className="text-sm text-green-400">✓ All items are complete!</p>
+      ) : (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {/* Documents Column */}
         <div className="rounded-lg border border-white/5 bg-white/5 p-4">
           <div className="mb-3 flex items-center gap-2">
@@ -159,6 +168,7 @@ export function PendingItems({ items }: PendingItemsProps) {
           </Link>
         </div>
       </div>
+      )}
     </div>
   )
 }

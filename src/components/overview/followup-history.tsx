@@ -104,7 +104,7 @@ export function FollowupHistory({ conversations }: FollowupHistoryProps) {
 
       <div className="space-y-3">
         {recentConversations.length === 0 ? (
-          <p className="text-sm text-gray-400">No conversation history</p>
+          <p className="text-sm text-gray-400">No conversation history yet.</p>
         ) : (
           recentConversations.map((conversation) => (
             <div

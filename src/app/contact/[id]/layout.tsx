@@ -24,13 +24,21 @@ export default async function ContactLayout({
 
   return (
     <MobileLayoutWrapper>
+      {/* Skip link for keyboard navigation */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:bg-pink-600 focus:px-4 focus:py-2 focus:text-white"
+      >
+        Skip to main content
+      </a>
+
       {/* Main content area */}
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div id="main-content" className="flex flex-1 flex-col overflow-hidden">
         <ContactHeader contact={contact} />
         <TabNavigation contactId={id} />
 
         {/* Tab content */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto transition-opacity duration-200">
           {children}
         </div>
       </div>

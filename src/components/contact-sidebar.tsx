@@ -1,11 +1,13 @@
 'use client'
 
+import { useState, useTransition } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Search, Plus, ChevronDown } from 'lucide-react'
 import { contacts } from '@/lib/mock-data'
 import { calculateStatus } from '@/lib/status'
 import { StatusBadge } from './status-badge'
+import { cn } from '@/lib/utils'
 
 const getInitials = (name: string): string => {
   const parts = name.split(' ')
@@ -16,6 +18,15 @@ const getInitials = (name: string): string => {
 
 export const ContactSidebar = () => {
   const pathname = usePathname()
+  const [isPending, startTransition] = useTransition()
+  const [loadingId, setLoadingId] = useState<string | null>(null)
+
+  const handleClick = (id: string) => {
+    setLoadingId(id)
+    startTransition(() => {
+      // Navigation happens via Link, this just tracks loading state
+    })
+  }
 
   return (
     <div className="flex h-screen w-[280px] flex-col border-r border-white/10 bg-[#0d0d0d]">
@@ -23,13 +34,13 @@ export const ContactSidebar = () => {
       <div className="border-b border-white/10 p-4">
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-sm font-medium text-white">Contacts</h2>
-          <button className="flex items-center gap-1 rounded px-2 py-1 text-xs text-gray-400 hover:bg-white/5">
+          <button className="flex items-center gap-1 rounded px-2 py-1 text-xs text-gray-400 hover:bg-white/5 min-h-[44px]">
             Companies
             <ChevronDown className="h-3 w-3" />
           </button>
         </div>
 
-        <button className="mb-3 flex w-full items-center justify-center gap-2 rounded-lg bg-pink-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-pink-700">
+        <button className="mb-3 flex w-full items-center justify-center gap-2 rounded-lg bg-pink-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-pink-700 min-h-[44px]">
           <Plus className="h-4 w-4" />
           Create Contact
         </button>
@@ -45,26 +56,37 @@ export const ContactSidebar = () => {
         </div>
 
         {/* Filters chip */}
-        <button className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-gray-400 hover:bg-white/10">
+        <button className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-gray-400 hover:bg-white/10 min-h-[44px]">
           Filters
         </button>
       </div>
 
       {/* Contact list */}
-      <div className="flex-1 overflow-y-auto">
+      <nav aria-label="Contact list" className="flex-1 overflow-y-auto">
         {contacts.map((contact) => {
           const status = calculateStatus(contact)
           const isActive = pathname.startsWith(`/contact/${contact.id}`)
+          const isLoading = loadingId === contact.id && isPending
+
+          const statusLabels = {
+            'needs-attention': 'needs attention',
+            'waiting-for-you': 'waiting for you',
+            'waiting-for-them': 'waiting for them',
+          }
 
           return (
             <Link
               key={contact.id}
               href={`/contact/${contact.id}`}
-              className={`flex items-center gap-3 border-b border-white/5 px-4 py-3 transition-colors ${
-                isActive
-                  ? 'bg-white/10'
-                  : 'hover:bg-white/5'
-              }`}
+              onClick={() => handleClick(contact.id)}
+              aria-label={`View ${contact.name}, status: ${statusLabels[status]}`}
+              aria-current={isActive ? 'page' : undefined}
+              className={cn(
+                'flex items-center gap-3 border-b border-white/5 px-4 py-3 transition-all',
+                isActive && 'bg-white/10',
+                !isActive && 'hover:bg-white/5',
+                isLoading && 'opacity-70'
+              )}
             >
               {/* Avatar */}
               <div
@@ -80,7 +102,11 @@ export const ContactSidebar = () => {
                   <p className="truncate text-sm font-medium text-white">
                     {contact.name}
                   </p>
-                  <StatusBadge status={status} variant="dot" />
+                  {isLoading ? (
+                    <div className="h-4 w-4 border-2 border-pink-600 border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <StatusBadge status={status} variant="dot" />
+                  )}
                 </div>
                 <p className="truncate text-xs text-gray-400">
                   {contact.email}
@@ -89,7 +115,7 @@ export const ContactSidebar = () => {
             </Link>
           )
         })}
-      </div>
+      </nav>
     </div>
   )
 }

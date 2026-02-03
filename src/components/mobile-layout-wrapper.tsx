@@ -25,7 +25,10 @@ export const MobileLayoutWrapper = ({ children }: MobileLayoutWrapperProps) => {
       <div className="fixed left-4 top-4 z-40 md:hidden">
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
-            <button className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a1a1a] text-gray-400 hover:bg-white/5 hover:text-white">
+            <button
+              aria-label="Open menu"
+              className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a1a1a] text-gray-400 hover:bg-white/5 hover:text-white"
+            >
               <Menu className="h-5 w-5" />
               <span className="sr-only">Open menu</span>
             </button>

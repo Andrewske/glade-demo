@@ -21,14 +21,30 @@ export default async function OverviewPage({
     )
   }
 
+  const cards = [
+    { component: <AISummary contact={contact} />, key: 'ai-summary' },
+    { component: <PendingItems items={contact.pendingItems} />, key: 'pending-items' },
+    { component: <FollowupHistory conversations={contact.conversations} />, key: 'followup-history' },
+  ]
+
+  if (contact.status === 'needs-attention') {
+    cards.push({ component: <SuggestedAction contact={contact} />, key: 'suggested-action' })
+  }
+
   return (
     <div className="grid grid-cols-1 gap-6 p-6 lg:grid-cols-2">
-      <AISummary contact={contact} />
-      <PendingItems items={contact.pendingItems} />
-      <FollowupHistory conversations={contact.conversations} />
-      {contact.status === 'needs-attention' && (
-        <SuggestedAction contact={contact} />
-      )}
+      {cards.map((card, index) => (
+        <div
+          key={card.key}
+          className="animate-fade-in-up opacity-0"
+          style={{
+            animationDelay: `${index * 100}ms`,
+            animationFillMode: 'forwards',
+          }}
+        >
+          {card.component}
+        </div>
+      ))}
     </div>
   )
 }

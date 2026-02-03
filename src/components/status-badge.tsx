@@ -32,6 +32,8 @@ export const StatusBadge = ({ status, variant }: StatusBadgeProps) => {
   if (variant === 'dot') {
     return (
       <div
+        role="status"
+        aria-label={`Status: ${config.label}`}
         className={`h-2 w-2 rounded-full ${config.bgClass}`}
         title={config.label}
       />
@@ -39,7 +41,11 @@ export const StatusBadge = ({ status, variant }: StatusBadgeProps) => {
   }
 
   return (
-    <div className={`inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium ${config.textClass}`}>
+    <div
+      role="status"
+      aria-label={`Status: ${config.label}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium ${config.textClass}`}
+    >
       <div className={`h-1.5 w-1.5 rounded-full ${config.bgClass}`} />
       {config.label}
     </div>
