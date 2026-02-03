@@ -41,12 +41,12 @@ export const IconRail = () => {
 	return (
 		<div className="flex h-screen w-18 flex-col items-center border-r border-border bg-background py-2">
 			{/* Glade logo */}
-			<div className="mb-8 flex h-8 w-8 items-center justify-center">
+			<div className="mb-8 flex h-9 w-8 items-center justify-center pt-3">
 				<Image
 					src="/glade-logo.avif"
 					alt="Glade"
 					width={28}
-					height={32}
+					height={34}
 					className="rounded"
 				/>
 			</div>
