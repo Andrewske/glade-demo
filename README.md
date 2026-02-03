@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Glade.ai Contact Overview Demo
 
-## Getting Started
+A demo feature for Glade.ai showing a Contact Overview tab with AI-powered client status summaries.
 
-First, run the development server:
+## Features
+
+- **Status Badges**: Green/Amber/Red indicators showing client status at a glance
+- **AI Summary**: GPT-4o-mini generated summaries of client situations
+- **Pending Items**: Quick view of documents, forms, and invoices status
+- **Follow-up History**: Timeline of recent client interactions
+- **Suggested Actions**: AI-generated escalation messages for unresponsive clients
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- TypeScript
+- Tailwind CSS v4
+- shadcn/ui components
+- Vercel AI SDK
+
+## Quick Start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+# Clone the repo
+git clone https://github.com/yourusername/glade-demo.git
+cd glade-demo
+
+# Install dependencies
+bun install
+
+# Start dev server
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## AI Integration (Optional)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The demo works without any API keys using mock data. To enable real AI summaries:
 
-## Learn More
+1. Copy `.env.local.example` to `.env.local`
+2. Add your OpenAI API key:
+   ```
+   OPENAI_API_KEY=sk-...
+   ```
+3. Restart the dev server
 
-To learn more about Next.js, take a look at the following resources:
+## Demo Walkthrough
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Contact List**: Notice the colored status dots next to each contact
+2. **Maria Garcia (Red)**: Click to see a client needing attention
+3. **Overview Tab**: AI summary, pending items, follow-up history
+4. **Suggested Action**: AI-generated escalation message (only for red status)
+5. **David Chen (Amber)**: Client waiting for attorney review
+6. **John Smith (Green)**: Client on track, awaiting their action
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+src/
+├── app/              # Next.js app router pages
+├── components/       # React components
+│   ├── ui/           # shadcn components
+│   └── overview/     # Overview tab cards
+├── lib/              # Utilities and mock data
+└── actions/          # Server actions (AI)
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+UI matches Glade's existing design system:
+- Dark theme (#0d0d0d background)
+- Pink accent (#ec4899)
+- Clean, minimal cards
+
+## Author
+
+Built by Kevin Andrews as an interview demo for Glade.ai
