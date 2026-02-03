@@ -38,12 +38,40 @@ function setCachedSummary(
 	}
 }
 
+async function loadSummary(
+	contact: ContactWithContext,
+	setData: (data: Partial<SummaryResult>) => void,
+	setError: (error: string | null) => void,
+): Promise<void> {
+	try {
+		const result = await generateContactSummary(contact);
+
+		if (result.type === "static") {
+			setData(result.data);
+			setCachedSummary(contact.id, result.data);
+		} else {
+			let finalData: Partial<SummaryResult> = {};
+			for await (const partialObject of readStreamableValue(result.stream)) {
+				if (partialObject) {
+					setData(partialObject);
+					finalData = partialObject;
+				}
+			}
+			setCachedSummary(contact.id, finalData);
+		}
+	} catch (err) {
+		const message =
+			err instanceof Error ? err.message : "Failed to generate summary";
+		setError(message);
+		toast.error(message);
+	}
+}
+
 export function AISummary({ contact }: AISummaryProps) {
 	const [data, setData] = useState<Partial<SummaryResult>>({});
 	const [error, setError] = useState<string | null>(null);
 	const [isPending, startTransition] = useTransition();
 
-	// Inline async logic to avoid stale closure issues
 	useEffect(() => {
 		// Check cache first (dev convenience - avoids API calls on refresh)
 		const cached = getCachedSummary(contact.id);
@@ -56,30 +84,7 @@ export function AISummary({ contact }: AISummaryProps) {
 		setError(null);
 
 		startTransition(async () => {
-			try {
-				const result = await generateContactSummary(contact);
-
-				if (result.type === "static") {
-					setData(result.data);
-					setCachedSummary(contact.id, result.data);
-				} else {
-					let finalData: Partial<SummaryResult> = {};
-					for await (const partialObject of readStreamableValue(
-						result.stream,
-					)) {
-						if (partialObject) {
-							setData(partialObject);
-							finalData = partialObject;
-						}
-					}
-					setCachedSummary(contact.id, finalData);
-				}
-			} catch (err) {
-				const message =
-					err instanceof Error ? err.message : "Failed to generate summary";
-				setError(message);
-				toast.error(message);
-			}
+			await loadSummary(contact, setData, setError);
 		});
 	}, [contact]);
 
@@ -88,30 +93,7 @@ export function AISummary({ contact }: AISummaryProps) {
 		setError(null);
 
 		startTransition(async () => {
-			try {
-				const result = await generateContactSummary(contact);
-
-				if (result.type === "static") {
-					setData(result.data);
-					setCachedSummary(contact.id, result.data);
-				} else {
-					let finalData: Partial<SummaryResult> = {};
-					for await (const partialObject of readStreamableValue(
-						result.stream,
-					)) {
-						if (partialObject) {
-							setData(partialObject);
-							finalData = partialObject;
-						}
-					}
-					setCachedSummary(contact.id, finalData);
-				}
-			} catch (err) {
-				const message =
-					err instanceof Error ? err.message : "Failed to generate summary";
-				setError(message);
-				toast.error(message);
-			}
+			await loadSummary(contact, setData, setError);
 		});
 	};
 

@@ -6,18 +6,13 @@ import { usePathname } from "next/navigation";
 import { useState, useTransition } from "react";
 import { contacts } from "@/lib/mock-data";
 import { calculateStatus } from "@/lib/status";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { StatusBadge } from "./status-badge";
 
 interface ContactSidebarProps {
 	mobileMode?: boolean;
 	onClose?: () => void;
 }
-
-const getInitials = (name: string): string => {
-	const parts = name.split(" ");
-	return parts.length >= 2 ? `${parts[0][0]}${parts[1][0]}` : name.slice(0, 2);
-};
 
 export const ContactSidebar = ({
 	mobileMode = false,

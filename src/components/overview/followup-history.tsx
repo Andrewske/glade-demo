@@ -1,14 +1,8 @@
 import type { Conversation } from "@/lib/types";
+import { formatDateShort } from "@/lib/utils";
 
 interface FollowupHistoryProps {
 	conversations: Conversation[];
-}
-
-function formatDate(date: Date): string {
-	return new Intl.DateTimeFormat("en-US", {
-		month: "short",
-		day: "numeric",
-	}).format(date);
 }
 
 function getIcon(type: Conversation["type"]) {
@@ -122,7 +116,7 @@ export function FollowupHistory({ conversations }: FollowupHistoryProps) {
 								</span>
 							</div>
 							<span className="text-sm text-muted-foreground">
-								{formatDate(conversation.timestamp)}
+								{formatDateShort(conversation.timestamp)}
 							</span>
 						</div>
 					))

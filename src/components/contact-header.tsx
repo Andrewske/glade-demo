@@ -1,24 +1,12 @@
 import { Settings } from "lucide-react";
 import { calculateStatus } from "@/lib/status";
 import type { ContactWithContext } from "@/lib/types";
+import { formatDateFull } from "@/lib/utils";
 import { StatusBadge } from "./status-badge";
 
 interface ContactHeaderProps {
 	contact: ContactWithContext;
 }
-
-const getInitials = (name: string): string => {
-	const parts = name.split(" ");
-	return parts.length >= 2 ? `${parts[0][0]}${parts[1][0]}` : name.slice(0, 2);
-};
-
-const formatDate = (date: Date): string => {
-	return new Intl.DateTimeFormat("en-US", {
-		month: "short",
-		day: "numeric",
-		year: "numeric",
-	}).format(date);
-};
 
 export const ContactHeader = ({ contact }: ContactHeaderProps) => {
 	const status = calculateStatus(contact);
@@ -50,7 +38,7 @@ export const ContactHeader = ({ contact }: ContactHeaderProps) => {
 							<span>{contact.email}</span>
 							<span className="hidden md:inline">•</span>
 							<span className="hidden md:inline">
-								Created at {formatDate(contact.createdAt)}
+								Created at {formatDateFull(contact.createdAt)}
 							</span>
 						</div>
 					</div>

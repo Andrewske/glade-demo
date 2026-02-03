@@ -10,8 +10,16 @@ export function daysBetween(date1: Date, date2: Date): number {
 	return Math.floor(diffTime / (1000 * 60 * 60 * 24));
 }
 
-export function formatDate(date: Date): string {
+export function formatDateShort(date: Date): string {
 	return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+export function formatDateFull(date: Date): string {
+	return new Intl.DateTimeFormat("en-US", {
+		month: "short",
+		day: "numeric",
+		year: "numeric",
+	}).format(date);
 }
 
 export function getInitials(name: string): string {

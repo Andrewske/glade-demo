@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { cn, daysBetween, formatDate, getInitials } from "../utils";
+import { cn, daysBetween, formatDateShort, getInitials } from "../utils";
 
 describe("daysBetween", () => {
 	test("calculates days between two dates", () => {
@@ -44,10 +44,10 @@ describe("cn", () => {
 	});
 });
 
-describe("formatDate", () => {
+describe("formatDateShort", () => {
 	test("formats date correctly", () => {
 		const date = new Date("2024-01-15");
-		const formatted = formatDate(date);
+		const formatted = formatDateShort(date);
 		expect(formatted).toMatch(/Jan 1[45]/);
 	});
 });
