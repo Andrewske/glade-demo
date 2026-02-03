@@ -46,10 +46,10 @@ export default function ContactLoading() {
 
       {/* Cards skeleton */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Skeleton className="h-48 rounded-lg" />
-        <Skeleton className="h-48 rounded-lg" />
-        <Skeleton className="h-48 rounded-lg" />
-        <Skeleton className="h-48 rounded-lg" />
+        <Skeleton className="h-48 rounded" />
+        <Skeleton className="h-48 rounded" />
+        <Skeleton className="h-48 rounded" />
+        <Skeleton className="h-48 rounded" />
       </div>
     </div>
   )
@@ -92,7 +92,7 @@ export function ContactSidebar({ contacts }: ContactSidebarProps) {
             href={`/contact/${contact.id}`}
             onClick={() => handleClick(contact.id)}
             className={cn(
-              'flex items-center gap-3 p-3 rounded-lg transition-all',
+              'flex items-center gap-3 p-3 rounded transition-all',
               isActive && 'bg-card-hover',
               isLoading && 'opacity-70'
             )}

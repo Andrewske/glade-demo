@@ -1,23 +1,30 @@
 :root {
-  /* Colors - Primary palette */
-  --color-background: #0d0d0d;
-  --color-card: #1a1a1a;
-  --color-card-hover: #242424;
-  --color-border: #2a2a2a;
+  /* Colors - Glade neutral gray dark theme */
+  --color-background: #212121;
+  --color-background-dark: #1a1a1a;
+  --color-card: #292929;
+  --color-card-hover: #333333;
+  --color-border: #333333;
 
   /* Accent colors */
+  --color-primary: #5A92FF;
   --color-accent: #ec4899;
   --color-accent-hover: #db2777;
+  --color-link: #38bdf8;
 
   /* Status colors */
   --color-success: #22c55e;
   --color-warning: #f59e0b;
-  --color-danger: #ef4444;
+  --color-danger: #e85160;
+
+  /* Selection/highlight colors - purple/indigo like Glade */
+  --color-selection: #6366f1;
+  --color-selection-glow: rgba(99, 102, 241, 0.4);
 
   /* Text colors */
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #9ca3af;
-  --color-text-muted: #6b7280;
+  --color-text-primary: #f0f0f0;
+  --color-text-secondary: #aaaaaa;
+  --color-text-muted: #666666;
 
   /* Spacing scale */
   --space-1: 0.25rem;

@@ -11,6 +11,27 @@ interface AISummaryProps {
   contact: ContactWithContext
 }
 
+const CACHE_KEY_PREFIX = 'ai-summary-cache-'
+
+function getCachedSummary(contactId: string): Partial<SummaryResult> | null {
+  if (typeof window === 'undefined') return null
+  try {
+    const cached = sessionStorage.getItem(CACHE_KEY_PREFIX + contactId)
+    return cached ? JSON.parse(cached) : null
+  } catch {
+    return null
+  }
+}
+
+function setCachedSummary(contactId: string, data: Partial<SummaryResult>): void {
+  if (typeof window === 'undefined') return
+  try {
+    sessionStorage.setItem(CACHE_KEY_PREFIX + contactId, JSON.stringify(data))
+  } catch {
+    // Ignore storage errors
+  }
+}
+
 export function AISummary({ contact }: AISummaryProps) {
   const [data, setData] = useState<Partial<SummaryResult>>({})
   const [error, setError] = useState<string | null>(null)
@@ -18,6 +39,13 @@ export function AISummary({ contact }: AISummaryProps) {
 
   // Inline async logic to avoid stale closure issues
   useEffect(() => {
+    // Check cache first (dev convenience - avoids API calls on refresh)
+    const cached = getCachedSummary(contact.id)
+    if (cached?.summary) {
+      setData(cached)
+      return
+    }
+
     setData({})
     setError(null)
 
@@ -27,12 +55,16 @@ export function AISummary({ contact }: AISummaryProps) {
 
         if (result.type === 'static') {
           setData(result.data)
+          setCachedSummary(contact.id, result.data)
         } else {
+          let finalData: Partial<SummaryResult> = {}
           for await (const partialObject of readStreamableValue(result.stream)) {
             if (partialObject) {
               setData(partialObject)
+              finalData = partialObject
             }
           }
+          setCachedSummary(contact.id, finalData)
         }
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Failed to generate summary'
@@ -52,12 +84,16 @@ export function AISummary({ contact }: AISummaryProps) {
 
         if (result.type === 'static') {
           setData(result.data)
+          setCachedSummary(contact.id, result.data)
         } else {
+          let finalData: Partial<SummaryResult> = {}
           for await (const partialObject of readStreamableValue(result.stream)) {
             if (partialObject) {
               setData(partialObject)
+              finalData = partialObject
             }
           }
+          setCachedSummary(contact.id, finalData)
         }
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Failed to generate summary'
@@ -68,7 +104,7 @@ export function AISummary({ contact }: AISummaryProps) {
   }
 
   return (
-    <div className="rounded-lg border border-white/10 bg-[#1a1a1a] p-6">
+    <div className="rounded border border-white/10 bg-[#292929] p-6">
       <div className="mb-4 flex items-center justify-between">
         <h3 className="text-lg font-semibold text-white">AI Summary</h3>
         <button

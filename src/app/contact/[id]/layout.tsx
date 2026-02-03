@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation'
 import { ContactHeader } from '@/components/contact-header'
 import { TabNavigation } from '@/components/tab-navigation'
 import { contacts } from '@/lib/mock-data'
-import { MobileLayoutWrapper } from '@/components/mobile-layout-wrapper'
 
 interface ContactLayoutProps {
   children: React.ReactNode
@@ -23,7 +22,7 @@ export default async function ContactLayout({
   }
 
   return (
-    <MobileLayoutWrapper>
+    <>
       {/* Skip link for keyboard navigation */}
       <a
         href="#main-content"
@@ -42,6 +41,6 @@ export default async function ContactLayout({
           {children}
         </div>
       </div>
-    </MobileLayoutWrapper>
+    </>
   )
 }

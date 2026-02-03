@@ -15,7 +15,7 @@ export function PendingItems({ items }: PendingItemsProps) {
     !invoices.overdue
 
   return (
-    <div className="rounded-lg border border-white/10 bg-[#1a1a1a] p-6">
+    <div className="rounded border border-white/10 bg-[#292929] p-6">
       <h3 className="mb-4 text-lg font-semibold text-white">Pending Items</h3>
 
       {allComplete ? (
@@ -23,7 +23,7 @@ export function PendingItems({ items }: PendingItemsProps) {
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {/* Documents Column */}
-        <div className="rounded-lg border border-white/5 bg-white/5 p-4">
+        <div className="rounded border border-white/5 bg-white/5 p-4">
           <div className="mb-3 flex items-center gap-2">
             <svg
               className="h-5 w-5 text-gray-400"
@@ -65,14 +65,14 @@ export function PendingItems({ items }: PendingItemsProps) {
 
           <Link
             href="#documents"
-            className="text-sm text-pink-400 hover:text-pink-300"
+            className="text-sm text-sky-400 hover:text-sky-300"
           >
             View →
           </Link>
         </div>
 
         {/* Forms Column */}
-        <div className="rounded-lg border border-white/5 bg-white/5 p-4">
+        <div className="rounded border border-white/5 bg-white/5 p-4">
           <div className="mb-3 flex items-center gap-2">
             <svg
               className="h-5 w-5 text-gray-400"
@@ -111,14 +111,14 @@ export function PendingItems({ items }: PendingItemsProps) {
 
           <Link
             href="#forms"
-            className="text-sm text-pink-400 hover:text-pink-300"
+            className="text-sm text-sky-400 hover:text-sky-300"
           >
             View →
           </Link>
         </div>
 
         {/* Invoices Column */}
-        <div className="rounded-lg border border-white/5 bg-white/5 p-4">
+        <div className="rounded border border-white/5 bg-white/5 p-4">
           <div className="mb-3 flex items-center gap-2">
             <svg
               className="h-5 w-5 text-gray-400"
@@ -162,7 +162,7 @@ export function PendingItems({ items }: PendingItemsProps) {
 
           <Link
             href="#invoices"
-            className="text-sm text-pink-400 hover:text-pink-300"
+            className="text-sm text-sky-400 hover:text-sky-300"
           >
             View →
           </Link>

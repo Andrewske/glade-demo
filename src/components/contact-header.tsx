@@ -26,9 +26,8 @@ export const ContactHeader = ({ contact }: ContactHeaderProps) => {
   const status = calculateStatus(contact)
 
   return (
-    <div className="border-b border-white/10 bg-[#0d0d0d] px-4 py-4 md:px-6">
-      {/* Breadcrumb - hidden on mobile */}
-      <div className="mb-4 hidden items-center gap-2 text-sm text-gray-400 md:flex">
+    <div className="border-b border-white/10 bg-[#212121] px-4 py-4 md:px-6">
+      <div className="mb-4 items-center gap-1 text-xs text-gray-400 flex">
         <span>Contacts</span>
         <span>/</span>
         <span>Unverified</span>
@@ -39,18 +38,12 @@ export const ContactHeader = ({ contact }: ContactHeaderProps) => {
       {/* Contact info */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3 md:gap-4">
-          {/* Avatar - smaller on mobile */}
-          <div
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-base font-medium text-white md:h-16 md:w-16 md:text-xl"
-            style={{ backgroundColor: contact.avatarColor }}
-          >
-            {getInitials(contact.name)}
-          </div>
+
 
           <div>
             {/* Name and status */}
-            <div className="mb-1 flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
-              <h1 className="text-lg font-semibold text-white md:text-2xl">
+            <div className="mb-1 flex gap-2 md:flex-row md:items-center md:gap-3">
+              <h1 className="text-2xl font-semibold text-white md:text-2xl">
                 {contact.name}
               </h1>
               <StatusBadge status={status} variant="badge" />
@@ -66,7 +59,7 @@ export const ContactHeader = ({ contact }: ContactHeaderProps) => {
         </div>
 
         {/* Settings icon */}
-        <button className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-white/5 hover:text-white">
+        <button className="flex h-10 w-10 items-center justify-center rounded text-gray-400 transition-colors hover:bg-white/5 hover:text-white">
           <Settings className="h-5 w-5" />
         </button>
       </div>

@@ -15,7 +15,7 @@ export default async function OverviewPage({
   if (!contact) {
     return (
       <div className="p-6">
-        <div className="rounded-lg border border-white/10 bg-[#1a1a1a] p-8 text-center">
+        <div className="rounded border border-white/10 bg-[#292929] p-8 text-center">
           <p className="text-gray-400">Contact not found</p>
         </div>
       </div>

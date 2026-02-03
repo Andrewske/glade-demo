@@ -14,10 +14,10 @@ export default function ContactLoading() {
 
       {/* Cards skeleton */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Skeleton className="h-48 rounded-lg" />
-        <Skeleton className="h-48 rounded-lg" />
-        <Skeleton className="h-48 rounded-lg" />
-        <Skeleton className="h-48 rounded-lg" />
+        <Skeleton className="h-48 rounded" />
+        <Skeleton className="h-48 rounded" />
+        <Skeleton className="h-48 rounded" />
+        <Skeleton className="h-48 rounded" />
       </div>
     </div>
   )

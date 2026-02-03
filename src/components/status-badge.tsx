@@ -44,9 +44,9 @@ export const StatusBadge = ({ status, variant }: StatusBadgeProps) => {
     <div
       role="status"
       aria-label={`Status: ${config.label}`}
-      className={`inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium ${config.textClass}`}
+      className={`inline-flex items-center gap-1.5 rounded border border-white/10 bg-white/5 px-2 text-xs font-medium ${config.textClass}`}
     >
-      <div className={`h-1.5 w-1.5 rounded-full ${config.bgClass}`} />
+      <div className={`h-1.5 w-1.5 rounded ${config.bgClass}`} />
       {config.label}
     </div>
   )

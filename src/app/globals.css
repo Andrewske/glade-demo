@@ -5,16 +5,20 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Glade Design System Colors */
-  --color-background: #0d0d0d;
-  --color-card: #1a1a1a;
-  --color-card-hover: #242424;
-  --color-border: #2a2a2a;
+  /* Glade Design System Colors - neutral gray dark theme */
+  --color-background: #212121;
+  --color-background-dark: #1a1a1a;
+  --color-card: #292929;
+  --color-card-hover: #333333;
+  --color-border: #333333;
   --color-accent: #ec4899;
   --color-accent-hover: #db2777;
+  --color-link: #38bdf8;
   --color-success: #22c55e;
   --color-warning: #f59e0b;
-  --color-danger: #ef4444;
+  --color-danger: #e85160;
+  --color-selection: #6366f1;
+  --color-selection-glow: rgba(99, 102, 241, 0.4);
 
   /* Standard shadcn mappings (using Glade colors) */
   --color-foreground: var(--foreground);
@@ -57,38 +61,38 @@
 
 :root {
   --radius: 0.625rem;
-  /* Glade dark theme by default */
-  --background: #0d0d0d;
-  --foreground: #ffffff;
-  --card: #1a1a1a;
-  --card-foreground: #ffffff;
-  --popover: #1a1a1a;
-  --popover-foreground: #ffffff;
+  /* Glade dark theme - neutral gray */
+  --background: #212121;
+  --foreground: #f0f0f0;
+  --card: #292929;
+  --card-foreground: #f0f0f0;
+  --popover: #292929;
+  --popover-foreground: #f0f0f0;
   --primary: #ec4899;
   --primary-foreground: #ffffff;
-  --secondary: #242424;
-  --secondary-foreground: #ffffff;
-  --muted: #242424;
-  --muted-foreground: #9ca3af;
+  --secondary: #333333;
+  --secondary-foreground: #f0f0f0;
+  --muted: #333333;
+  --muted-foreground: #aaaaaa;
   --accent: #ec4899;
   --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --border: #2a2a2a;
-  --input: #2a2a2a;
-  --ring: #ec4899;
+  --destructive: #e85160;
+  --border: #333333;
+  --input: #333333;
+  --ring: #3b82f6;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: #1a1a1a;
-  --sidebar-foreground: #ffffff;
+  --sidebar-foreground: #f0f0f0;
   --sidebar-primary: #ec4899;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #242424;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #2a2a2a;
-  --sidebar-ring: #ec4899;
+  --sidebar-accent: #292929;
+  --sidebar-accent-foreground: #f0f0f0;
+  --sidebar-border: #333333;
+  --sidebar-ring: #3b82f6;
 }
 
 .dark {
@@ -153,7 +157,7 @@
 
   /* Focus visible styling for accessibility */
   :focus-visible {
-    outline: 2px solid #ec4899;
+    outline: 2px solid #3b82f6;
     outline-offset: 2px;
   }
 }

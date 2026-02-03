@@ -99,7 +99,7 @@ export function FollowupHistory({ conversations }: FollowupHistoryProps) {
     .slice(0, 5)
 
   return (
-    <div className="rounded-lg border border-white/10 bg-[#1a1a1a] p-6">
+    <div className="rounded border border-white/10 bg-[#292929] p-6">
       <h3 className="mb-4 text-lg font-semibold text-white">Follow-up History</h3>
 
       <div className="space-y-3">
@@ -109,7 +109,7 @@ export function FollowupHistory({ conversations }: FollowupHistoryProps) {
           recentConversations.map((conversation) => (
             <div
               key={conversation.id}
-              className="flex items-center justify-between gap-3 rounded-lg border border-white/5 bg-white/5 p-3"
+              className="flex items-center justify-between gap-3 rounded border border-white/5 bg-white/5 p-3"
             >
               <div className="flex items-center gap-3">
                 {getIcon(conversation.type)}

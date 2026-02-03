@@ -154,7 +154,7 @@ function CaseHealthCard({ caseData }: { caseData: CaseHealthScore }) {
   };
 
   return (
-    <div className="border-l-4 border-red-500 bg-red-50 p-4 rounded-lg mb-4">
+    <div className="border-l-4 border-red-500 bg-red-50 p-4 rounded mb-4">
       <div className="flex justify-between items-start">
         <div>
           <h3 className="font-semibold text-lg">

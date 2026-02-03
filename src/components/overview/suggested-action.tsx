@@ -47,7 +47,7 @@ export function SuggestedAction({ contact }: SuggestedActionProps) {
 
   if (loading) {
     return (
-      <div className="rounded-lg border border-red-500/20 bg-red-950/20 p-6">
+      <div className="rounded border border-red-500/20 bg-red-950/20 p-6">
         <div className="mb-4 flex items-center gap-2">
           <svg
             className="h-5 w-5 text-red-400"
@@ -75,7 +75,7 @@ export function SuggestedAction({ contact }: SuggestedActionProps) {
 
   return (
     <>
-      <div className="rounded-lg border border-red-500/20 bg-red-950/20 p-6">
+      <div className="rounded border border-red-500/20 bg-red-950/20 p-6">
         <div className="mb-4 flex items-center gap-2">
           <svg
             className="h-5 w-5 text-red-400"
@@ -97,7 +97,7 @@ export function SuggestedAction({ contact }: SuggestedActionProps) {
           Multiple follow-ups haven't gotten a response. Try a different approach:
         </p>
 
-        <div className="mb-4 rounded-lg border border-white/10 bg-black/30 p-4">
+        <div className="mb-4 rounded border border-white/10 bg-black/30 p-4">
           <p className="text-sm italic leading-relaxed text-gray-200">
             "{escalationMessage}"
           </p>
@@ -106,7 +106,7 @@ export function SuggestedAction({ contact }: SuggestedActionProps) {
         <div className="flex gap-3">
           <button
             onClick={handleCopy}
-            className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
+            className="flex items-center gap-2 rounded bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
           >
             <svg
               className="h-4 w-4"
@@ -126,7 +126,7 @@ export function SuggestedAction({ contact }: SuggestedActionProps) {
 
           <button
             onClick={handleSMS}
-            className="flex items-center gap-2 rounded-lg bg-pink-500/20 px-4 py-2 text-sm font-medium text-pink-300 transition-colors hover:bg-pink-500/30"
+            className="flex items-center gap-2 rounded bg-pink-500/20 px-4 py-2 text-sm font-medium text-pink-300 transition-colors hover:bg-pink-500/30"
           >
             <svg
               className="h-4 w-4"
@@ -148,7 +148,7 @@ export function SuggestedAction({ contact }: SuggestedActionProps) {
 
       {/* Toast notification */}
       {toast && (
-        <div className="fixed bottom-4 right-4 z-50 rounded-lg border border-white/10 bg-[#1a1a1a] px-4 py-3 shadow-lg">
+        <div className="fixed bottom-4 right-4 z-50 rounded border border-white/10 bg-[#292929] px-4 py-3 shadow-lg">
           <p className="text-sm text-white">{toast}</p>
         </div>
       )}
