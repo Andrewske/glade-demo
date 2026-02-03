@@ -21,6 +21,15 @@ export const ContactSidebar = ({
 	const pathname = usePathname();
 	const [isPending, startTransition] = useTransition();
 	const [loadingId, setLoadingId] = useState<string | null>(null);
+	const [searchQuery, setSearchQuery] = useState("");
+
+	const filteredContacts = contacts.filter((contact) => {
+		const query = searchQuery.toLowerCase();
+		return (
+			contact.name.toLowerCase().includes(query) ||
+			contact.email.toLowerCase().includes(query)
+		);
+	});
 
 	const handleClick = (id: string) => {
 		setLoadingId(id);
@@ -64,6 +73,8 @@ export const ContactSidebar = ({
 				<input
 					type="text"
 					placeholder="Search"
+					value={searchQuery}
+					onChange={(e) => setSearchQuery(e.target.value)}
 					className="h-full w-full bg-transparent pl-11 pr-28 text-sm text-foreground placeholder-muted-foreground focus:outline-none"
 				/>
 				<button className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
@@ -93,10 +104,10 @@ export const ContactSidebar = ({
 			<nav aria-label="Contact list" className="flex-1 overflow-y-auto bg-card">
 				<div className="py-2 text-center">
 					<span className="text-xs text-muted-foreground">
-						{contacts.length} total
+						{filteredContacts.length} total
 					</span>
 				</div>
-				{contacts.map((contact) => {
+				{filteredContacts.map((contact) => {
 					const status = calculateStatus(contact);
 					const isActive = pathname.startsWith(`/contact/${contact.id}`);
 					const isLoading = loadingId === contact.id && isPending;

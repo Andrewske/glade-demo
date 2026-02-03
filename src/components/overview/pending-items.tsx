@@ -23,7 +23,7 @@ export function PendingItems({ items }: PendingItemsProps) {
 			{allComplete ? (
 				<p className="text-sm text-status-success">✓ All items are complete!</p>
 			) : (
-				<div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+				<div className="flex flex-col gap-4 ">
 					{/* Documents Column */}
 					<div className="rounded border border-border bg-muted p-4">
 						<div className="mb-3 flex items-center gap-2">
